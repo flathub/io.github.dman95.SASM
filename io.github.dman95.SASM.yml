@@ -24,17 +24,17 @@ modules:
     buildsystem: qmake
     post-install:
       - >
-        awk -i inplace '/<\/component>/ {print "<releases><release version=\"3.12.1\" date=\"2021-02-13\"/></releases>"} 1'
+        awk -i inplace '/<\/component>/ {print "<releases><release version=\"3.12.2\" date=\"2022-02-06\"/></releases>"} 1'
         ${FLATPAK_DEST}/share/metainfo/io.github.dman95.SASM.metainfo.xml
     sources:
       - type: git
         url: https://github.com/Dman95/SASM.git
-        branch: v3.12.1
-        commit: 7e3ae6da1c219a68e26d38939338567e5c27151a
+        branch: v3.12.2
+        commit: 4e74afe3460ecd1d9d102a4b4393113d1b001f8f
+      - type: shell
+        commands:
+          - rm -rf {Linux,BSD}/bin
       # sent upstream: https://github.com/Dman95/SASM/pull/160
       - type: patch
         use-git: true
-        path: patches/0001-remove-binaries.patch
-      - type: patch
-        use-git: true
-        path: patches/0002-Deduplicate-Linux-and-BSD-into-Unix.patch
+        path: patches/0001-Deduplicate-Linux-and-BSD-into-Unix.patch

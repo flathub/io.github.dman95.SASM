@@ -1,15 +1,15 @@
 SPDX-License-Identifier: MIT OR CC0-1.0
-SPDX-FileCopyrightText: 2021 dgcampea <59268455+dgcampea@users.noreply.github.com>
+SPDX-FileCopyrightText: 2022 dgcampea <59268455+dgcampea@users.noreply.github.com>
 
-From 02c6eaa0a37b648d259a4249f6020911116958a4 Mon Sep 17 00:00:00 2001
+From a0ca8aa4a490784368797823f72b7adf6750dbfe Mon Sep 17 00:00:00 2001
 From: dgcampea <59268455+dgcampea@users.noreply.github.com>
 Date: Fri, 26 Feb 2021 14:00:11 +0000
-Subject: [PATCH 2/2] Deduplicate Linux/ and BSD/ into Unix/ Install icons to
+Subject: [PATCH 1/2] Deduplicate Linux/ and BSD/ into Unix/ Install icons to
  correct location Add AppStream metadata file
 
 ---
  BSD/share/applications/sasm.desktop           |   9 -
- BSD/share/doc/sasm/changelog.gz               | Bin 1759 -> 0 bytes
+ BSD/share/doc/sasm/changelog.gz               | Bin 1898 -> 0 bytes
  Linux/share/doc/sasm/copyright                |  29 -
  Linux/share/sasm/NASM/macro.c                 |   5 -
  Linux/share/sasm/Projects/FASMHello.asm       |  18 -
@@ -23,7 +23,7 @@ Subject: [PATCH 2/2] Deduplicate Linux/ and BSD/ into Unix/ Install icons to
  Linux/share/sasm/keys.ini                     |  28 -
  Linux/share/sasm/sasm.png                     | Bin 17097 -> 0 bytes
  README.txt                                    |   2 +-
- SASM.pro                                      |  41 +-
+ SASM.pro                                      |  42 +-
  {Linux => Unix}/share/doc/sasm/changelog.gz   | Bin
  {BSD => Unix}/share/doc/sasm/copyright        |   0
  {BSD => Unix}/share/sasm/NASM/macro.c         |   0
@@ -40,7 +40,7 @@ Subject: [PATCH 2/2] Deduplicate Linux/ and BSD/ into Unix/ Install icons to
  .../128x128/apps/io.github.dman95.SASM.png    | Bin
  .../io.github.dman95.SASM.desktop             |   4 +-
  res/io.github.dman95.SASM.metainfo.xml        |  41 +
- 32 files changed, 64 insertions(+), 1964 deletions(-)
+ 32 files changed, 65 insertions(+), 1964 deletions(-)
  delete mode 100644 BSD/share/applications/sasm.desktop
  delete mode 100644 BSD/share/doc/sasm/changelog.gz
  delete mode 100644 Linux/share/doc/sasm/copyright
@@ -88,47 +88,49 @@ index 379c3f2..0000000
 -Categories=Qt;Development;IDE;
 diff --git a/BSD/share/doc/sasm/changelog.gz b/BSD/share/doc/sasm/changelog.gz
 deleted file mode 100644
-index 47000ba6e06201f31ca35b154d2c1cfaa3a8b683..0000000000000000000000000000000000000000
+index cec4e816c28fab073b6d11993aee07951dfdee85..0000000000000000000000000000000000000000
 GIT binary patch
 literal 0
 HcmV?d00001
 
-literal 1759
-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
-BSBC%q
+literal 1898
+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
 
 diff --git a/Linux/share/doc/sasm/copyright b/Linux/share/doc/sasm/copyright
 deleted file mode 100644
@@ -2472,18 +2474,19 @@ index d998148..694a522 100644
  3) For Linux: "make install" (command "sasm" will open SASM) or run "sasm" from folder right away or put "sasm" executable file to folder "Linux" (from this folder you can run the program).
     For Windows: Put "sasm.exe" executable file to folder "Windows". From this folder you can run the program. Also you can run program right away from compilation folder.
 diff --git a/SASM.pro b/SASM.pro
-index 7aa7e04..e48b5e6 100644
+index 7aa7e04..2eea4e3 100644
 --- a/SASM.pro
 +++ b/SASM.pro
-@@ -12,39 +12,36 @@ TARGET = sasm
+@@ -12,39 +12,37 @@ TARGET = sasm
  TEMPLATE = app
  
  isEmpty(PREFIX) {
 - PREFIX = /usr
 +    bsd {
 +        PREFIX = /usr/local
++    } else {
++        PREFIX = /usr
 +    }
-+    PREFIX = /usr
  }
  
  BINDIR = $$PREFIX/bin
@@ -2682,5 +2685,5 @@ index 0000000..4a0bcd7
 +  <content_rating type="oars-1.1" />
 +</component>
 -- 
-2.31.1
+2.35.1
 

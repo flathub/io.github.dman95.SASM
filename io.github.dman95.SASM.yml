@@ -24,8 +24,9 @@ modules:
     buildsystem: qmake
     build-commands: [
       "install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/appdata/${FLATPAK_ID}.metainfo.xml",
-      "install -Dm644 ${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
-      "install -Dm644 ${FLATPAK_ID}.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png",  
+      "install -Dm644 Linux/share/applications/sasm.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
+      "install -Dm644 images/smallIcon.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png",
+      "desktop-file-edit --set-icon=$FLATPAK_ID ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
     ]
     sources:
       - type: git
@@ -37,7 +38,3 @@ modules:
           - rm -rf {Linux,BSD}/bin
       - type: file
         path: io.github.dman95.SASM.metainfo.xml
-      - type: file
-        path: io.github.dman95.SASM.desktop
-      - type: file
-        path: io.github.dman95.SASM.png

@@ -25,7 +25,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/Dman95/SASM.git
-        branch: v3.13.4
+        tag: v3.13.4
         commit: 7c610500f63f216a97240fff2c9ac18c0fe645d7
       - type: shell
         commands:

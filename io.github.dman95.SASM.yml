@@ -22,6 +22,11 @@ finish-args:
 modules:
   - name: SASM
     buildsystem: qmake
+    build-commands: [
+      "install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/appdata/${FLATPAK_ID}.metainfo.xml",
+      "install -Dm644 ${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
+      "install -Dm644 ${FLATPAK_ID}.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png",  
+    ]
     sources:
       - type: git
         url: https://github.com/Dman95/SASM.git
@@ -30,3 +35,9 @@ modules:
       - type: shell
         commands:
           - rm -rf {Linux,BSD}/bin
+      - type: file
+        path: io.github.dman95.SASM.metainfo.xml
+      - type: file
+        path: io.github.dman95.SASM.desktop
+      - type: file
+        path: io.github.dman95.SASM.png

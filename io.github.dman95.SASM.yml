@@ -5,7 +5,7 @@
 app-id: io.github.dman95.SASM
 
 runtime: org.kde.Sdk
-runtime-version: '5.15'
+runtime-version: '5.15-23.08'
 sdk: org.kde.Sdk
 
 command: 'sasm'
@@ -22,19 +22,19 @@ finish-args:
 modules:
   - name: SASM
     buildsystem: qmake
-    post-install:
-      - >
-        awk -i inplace '/<\/component>/ {print "<releases><release version=\"3.12.2\" date=\"2022-02-06\"/></releases>"} 1'
-        ${FLATPAK_DEST}/share/metainfo/io.github.dman95.SASM.metainfo.xml
+    build-commands: [
+      "install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/appdata/${FLATPAK_ID}.metainfo.xml",
+      "install -Dm644 Linux/share/applications/sasm.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
+      "install -Dm644 images/smallIcon.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png",
+      "desktop-file-edit --set-icon=$FLATPAK_ID ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+    ]
     sources:
       - type: git
         url: https://github.com/Dman95/SASM.git
-        branch: v3.12.2
-        commit: 4e74afe3460ecd1d9d102a4b4393113d1b001f8f
+        tag: v3.13.4
+        commit: 7c610500f63f216a97240fff2c9ac18c0fe645d7
       - type: shell
         commands:
           - rm -rf {Linux,BSD}/bin
-      # sent upstream: https://github.com/Dman95/SASM/pull/160
-      - type: patch
-        use-git: true
-        path: patches/0001-Deduplicate-Linux-and-BSD-into-Unix.patch
+      - type: file
+        path: io.github.dman95.SASM.metainfo.xml

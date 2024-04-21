@@ -31,8 +31,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Dman95/SASM.git
-        tag: v3.13.4
-        commit: 7c610500f63f216a97240fff2c9ac18c0fe645d7
+        tag: v3.14.0
+        commit: 6bb9ba90b3cd8019c8b8ef7593fb8cf8f5da3a1d
       - type: shell
         commands:
           - rm -rf {Linux,BSD}/bin

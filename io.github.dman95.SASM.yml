@@ -5,10 +5,12 @@
 app-id: io.github.dman95.SASM
 
 runtime: org.kde.Sdk
-runtime-version: '5.15-25.08'
+runtime-version: 5.15-25.08
 sdk: org.kde.Sdk
 
-command: 'sasm'
+command: sasm
+rename-icon: smallIcon
+rename-desktop-file: sasm.desktop
 
 finish-args:
   - --socket=wayland
@@ -22,19 +24,17 @@ finish-args:
 modules:
   - name: SASM
     buildsystem: qmake
-    build-commands: [
-      "install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/appdata/${FLATPAK_ID}.metainfo.xml",
-      "install -Dm644 Linux/share/applications/sasm.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
-      "install -Dm644 images/smallIcon.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png",
-      "desktop-file-edit --set-icon=$FLATPAK_ID ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
-    ]
+    build-commands:
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/appdata/
+      - install -Dm644 Linux/share/applications/sasm.desktop -t ${FLATPAK_DEST}/share/applications/
+      - install -Dm644 images/smallIcon.png -t ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/
+    cleanup:
+      - /bin/fasm
+      - /bin/listing
     sources:
       - type: git
         url: https://github.com/Dman95/SASM.git
         tag: v3.15.0
         commit: 9993afb1fd0fedfa86225e95f03de5963ecb3c5f
-      - type: shell
-        commands:
-          - rm -rf {Linux,BSD}/bin
       - type: file
         path: io.github.dman95.SASM.metainfo.xml

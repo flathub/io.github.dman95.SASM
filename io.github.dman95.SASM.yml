@@ -5,7 +5,7 @@
 app-id: io.github.dman95.SASM
 
 runtime: org.kde.Sdk
-runtime-version: '5.15-23.08'
+runtime-version: '5.15-25.08'
 sdk: org.kde.Sdk
 
 command: 'sasm'
@@ -31,8 +31,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Dman95/SASM.git
-        tag: v3.14.0
-        commit: 6bb9ba90b3cd8019c8b8ef7593fb8cf8f5da3a1d
+        tag: v3.15.0
+        commit: 9993afb1fd0fedfa86225e95f03de5963ecb3c5f
       - type: shell
         commands:
           - rm -rf {Linux,BSD}/bin
